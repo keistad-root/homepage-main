@@ -1,0 +1,38 @@
+
+{% if include.grade %}
+{% assign members = site.members | sort: StartDate | where: "Grade", {{include.grade}}%}
+{% assign forder = "1" | split : "" %}
+{% assign border = false %}
+{% elsif include.forder %}
+{% assign members = site.members | sort: StartDate %}
+{% assign forder = include.forder | strip | replace: " ", "" | split: "," %}
+{% assign border = true %}
+{% else %}
+{% endif %}
+
+<div class="container">
+    <div class="grid-container">
+    {% for forder_ in forder %}
+    {% for member in members %}
+        {% if member.hide %} {% continue %} {% endif %}
+        {% assign fgrade = member.Grade | strip | replace: " ", ""%}
+        {% unless fgrade contains forder_ %} {% if border %} {% continue %} {% endif %} {% endunless %}
+        <div style="background-color:#fff;">
+            {% if member.Photo %}
+            <a href="{{ member.url }}.html">
+                <img class="grid-item" src="{{ member.Photo }}" alt="Photo of {{ member.Name }}">
+            </a>
+            {% endif %}
+            <center>
+                <div> <b>{{ member.Name }}</b><br>
+                    {% unless member.Grade=="Professor" %} {{ member.StartDate }} - {{ member.EndDate }} <br> {% endunless %}
+                    {% if include.forder %} {{member.Grade}} {% endif %}
+                    {% if member.Email %} <a href="mailto:{{ member.Email[0] }}">{{ member.Email[0] }}</a> {% endif %}
+                </div>
+            </center>
+        </div>
+    {% endfor %}
+    {% endfor %}
+    </div>
+    <br>
+</div>

@@ -1,0 +1,68 @@
+# SITE CONFIGURATION
+#baseurl: "/Type-on-Strap"
+url: "https://hipex.phys.pusan.ac.kr"
+
+# THEME-SPECIFIC CONFIGURATION
+title: HIPEx                                    # site's title
+description: "A website with blog posts and pages"      # used by search engines
+avatar: assets/img/HIPEx_Logo_White_background.png                         # Empty for no avatar in navbar
+favicon: assets/favicon.ico                             # Icon displayed in the tab
+
+# Header and footer text
+header_text: Heavy Ion Physics Experiment Lab.  # Change Blog header text
+header_feature_image: /assets/img/test.png
+footer_text: >
+  Internal Page : <a href="https://www.notion.so/hipex/Main-Board-4d0b5cacfa21403db3f380614e3bfd33">notion.so</a>
+
+# Blog
+excerpt: true                                           # Or "truncate" (first 250 characters), "false" to disable
+post_navigation: true
+color_image: /assets/img/lineart.png                    # A bit transparent for color posts.
+
+# Features
+# More in the _data folder for share buttons, author and language
+# For layout customization, go to the "_sass > base" folder, and check "_variables.scss"
+katex: false                                             # Enable if using math markup
+mermaid: false                                           # Enable mermaid-js for sequence and diagrams
+google_analytics:                                       # Tracking ID, e.g. "UA-000000-01"
+cookie_consent: false                                   # To respect the usage of cookies
+color_theme: auto                                       # auto, dark or light
+
+simplesearch: false
+
+# Comments
+comments:
+  disqus_shortname:                                     # Your discus shortname for comments
+  cusdis_app_id:                                        # Your cusdis data-app-id
+  utterances:                                           # Enable by filling below information. For more info, go to https://utteranc.es
+    repo:                                               # your public comments repository (e.g. owner/repo)
+    issue-term:                                         # Issue term (e.g. "comment" consider issues with this word in the title as comments)
+
+# PAGINATION
+# paginate: 5
+# paginate_path: "/blog/page:num"
+
+# PORTFOLIO
+collections:
+  members:
+    output: true
+    permalink: /:collection/:name
+  publications:
+    output: true
+    permalink: /:collection/:name
+
+# BUILD SETTINGS
+sass:
+  style: compressed
+plugins: [ jekyll-paginate, jekyll-seo-tag, jekyll-feed ]
+exclude: [ ".jekyll-cache", ".idea", "vendor/*", "assets/node_modules/*", "build/" ]
+
+# theme: type-on-strap                                  # if using the theme as a jekyll theme gem
+remote_theme: sylhare/Type-on-Strap                     # If using as a remote_theme in github
+
+# Math equation
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false

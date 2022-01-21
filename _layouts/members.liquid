@@ -1,0 +1,117 @@
+---
+layout: default
+---
+<article {% if page.feature-img or page.color %}class="feature-image" {% endif %}>
+  <header id="main" style="">
+    <div class="title-padder">
+      {% if page.hide_title %}
+      <div class="feature-image-padding"></div>
+      {% else %}
+      <!-- <h1 id="{{ page.title | cgi_escape }}" class="title">{{ page.title }}</h1> -->
+      <h1 id="{{ page.Name | cgi_escape }}" class="title">{{ page.Name }}</h1>
+      {% endif %}
+    </div>
+  </header>
+
+  <section class="post-content">
+  {% if page.bootstrap %}
+    <div class="bootstrap-iso">
+  {% endif %}
+  <div style="width:40%">
+  {% if page.Photo %}
+  <img src={{page.Photo}}>
+  {% endif %}
+</div>
+<div>
+  <table>
+    <tr>
+      <td></td>
+      <td>{{ page.Grade }}</td>
+    </tr>
+    {% if page.Email %}
+    <tr>
+      <td>E-Mail</td>
+      <td>
+      <table style="margin:0; border: 0px">
+      {% for email in page.Email %}
+      <tr><td style="padding:0;margin:0; border: 0px"><a href="mailto:{{ email }}">{{ email }}</a></td></tr>
+      {% endfor %}
+      </table>
+      </td>
+    </tr>
+    {% endif %}
+    {% if page.Phone %}
+    <tr>
+      <td>Phone</td>
+      <td>
+      <table style="margin:0; border: 0px">
+      {% for phone in page.Phone %}
+      <tr><td style="padding:0;margin:0; border: 0px">{{ phone }}</td></tr>
+      {% endfor %}
+      </table>
+      </td>
+    </tr>
+    {% endif %}
+    {% if page.Fax %}
+    <tr>
+      <td>Fax</td>
+      <td>
+      <table style="margin:0; border: 0px">
+      {% for fax in page.Fax %}
+      <tr><td style="padding:0;margin:0; border: 0px">{{ fax }}</td></tr>
+      {% endfor %}
+      </table>
+      </td>
+    </tr>
+    {% endif %}
+    {% if page.Homepage %}
+    <tr>
+      <td>Homepage</td>
+      <td>
+      <table style="margin:0; border: 0px">
+      {% for homepage in page.Homepage %}
+      <tr><td style="padding:0;margin:0; border: 0px"><a href="{{ homepage }}" target="_blank">{{ homepage }}</a></td></tr>
+      {% endfor %}
+      </table>
+      </td>
+    </tr>
+    {% endif %}
+    {% if page.Github %}
+    <tr>
+      <td>Github</td>
+      <td><a href="https://github.com/{{ page.Github }}" target="_blank">@{{ page.Github }}</a></td>
+    </tr>
+    {% endif %}
+  </table>
+</div>
+
+  {{ content }}
+  {% if page.bootstrap %}
+    </div>
+  {% endif %}
+  </section>
+</article>
+
+<!-- To change color of links in the page -->
+<style>
+  header#main {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  {% if page.color %}
+  .feature-image a { color: {{ page.color }} !important; }
+  div#post-nav a { color: {{ page.color }} !important; }
+  footer a { color: {{ page.color }} !important; }
+  .site-header nav a:hover {  color: {{ page.color }} !important; }
+  header#main {
+      background-color: {{ page.color }} !important;
+      background-image: url('{{ site.color_image | relative_url }}');
+  }
+  {% endif %}
+
+  {% if page.feature-img %}
+  header#main { background-image: url('{{ page.feature-img | relative_url }}'); }
+  {% endif %}
+</style>
